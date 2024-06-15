@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            height: 200vh;
+            /* Adding extra height to enable scrolling */
+            margin: 0;
+        }
+
+        .progress-container {
+            width: 100%;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .progress-bar {
+            width: 0;
+            height: 30px;
+            background-color: #4caf50;
+            border-radius: 5px;
+            text-align: center;
+            line-height: 30px;
+            color: white;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar">0%</div>
+    </div>
+
+    <script>
+        window.onscroll = function () {
+            updateProgressBar();
+        };
+
+        function updateProgressBar() {
+            var progressBar = document.getElementById('progressBar');
+            var scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
+            var documentHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrollPercentage = (scrollPosition / documentHeight) * 100;
+
+            progressBar.style.width = scrollPercentage + '%';
+            progressBar.innerHTML = Math.round(scrollPercentage) + '%';
+        }
+    </script>
+
+</body>
+
+</html>
